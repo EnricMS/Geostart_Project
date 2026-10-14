@@ -8,6 +8,7 @@
   Popup as FinestraMapa,
   setWorkerUrl as establirRutaWorker
 } from 'maplibre-gl';
+  import puntProva from '../dades/puntProva.json';
 
   /** @type {HTMLDivElement} */
   let contenidorMapa;
@@ -27,13 +28,18 @@ const finestra = new FinestraMapa({
   closeButton: false
 });
 
-finestra.setText('Barcelona: Marcador origen.');
+finestra.setText(
+  `${puntProva.properties.nom}: ${puntProva.properties.descripcio}`
+);
 
 const marcador = new MarcadorMapLibre({
   color: '#166534'
 });
 
-marcador.setLngLat([2.17, 41.39]);
+marcador.setLngLat([
+  puntProva.geometry.coordinates[0],
+  puntProva.geometry.coordinates[1]
+]);
 marcador.setPopup(finestra);
 marcador.addTo(mapa);
 
