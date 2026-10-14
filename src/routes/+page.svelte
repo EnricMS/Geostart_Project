@@ -1,6 +1,7 @@
 <script>
 
   import PanellInformacio from '../lib/components/PanellInformacio.svelte';
+  import Mapa from '../lib/components/Mapa.svelte';
 
   const nomProjecte = 'GeoExplora';
 
@@ -12,6 +13,7 @@
 
   <PanellInformacio></PanellInformacio>
 
+  <Mapa></Mapa>
 </main>
 
 
