@@ -1,11 +1,19 @@
 <script>
-  let nombreProyecto = 'GeoExplora';
+
+  import PanellInformacio from '../lib/components/PanellInformacio.svelte';
+
+  const nomProjecte = 'GeoExplora';
+
 </script>
 
 <main>
   <h1>Geo Explora</h1>
   <p>Un visor per a explorar dades geogràfiques de Catalunya.</p>
+
+  <PanellInformacio></PanellInformacio>
+
 </main>
+
 
 <style>
   main {
@@ -24,3 +32,4 @@
     line-height: 1.6;
   }
 </style>
+
