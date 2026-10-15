@@ -1,6 +1,6 @@
 # Revisió de la primera versió
 
-La compilació comprova el codi, però no garanteix que tots els serveis cartogràfics externs responguin. Les proves visuals següents queden pendents de confirmació manual. No s'han generat captures ni s'ha publicat encara la demostració.
+La compilació comprova el codi, però no garanteix que tots els serveis cartogràfics externs responguin. Les proves visuals següents queden pendents de confirmació manual. No s'han generat captures. L'autor ha confirmat un desplegament a Vercel: [GeoExplora](https://geoexplora-f0cazirbh-enric-miralles.vercel.app/). Queda pendent verificar-ne l'accés públic, l'API i el domini estable de producció.
 
 ## Comprovacions de codi
 

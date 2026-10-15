@@ -4,7 +4,11 @@ Visor cartogràfic i geològic de Catalunya desenvolupat com a projecte personal
 
 Permet comparar una zona sobre cartografia grisa o ortofoto, superposar-hi el mapa geològic general de l'ICGC i controlar-ne l'opacitat.
 
-**Estat:** primera versió local. La publicació, les captures i la revisió visual final estan pendents. No és un producte oficial de l'ICGC.
+**Estat:** primera versió desplegada a Vercel segons confirmació de l'autor. Les captures i la revisió visual final estan pendents. No és un producte oficial de l'ICGC.
+
+**URL del desplegament compartida el 15 d'octubre de 2026:** [Obrir GeoExplora](https://geoexplora-f0cazirbh-enric-miralles.vercel.app/).
+
+Aquesta adreça identifica el desplegament compartit. Cal confirmar el domini de producció estable a l'apartat Domains de Vercel abans d'utilitzar-lo al currículum. L'accés públic i l'endpoint `/api/capes` encara no s'han verificat externament.
 
 ## Funcionalitats
 
