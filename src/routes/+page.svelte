@@ -5,6 +5,14 @@
 	const nomProjecte = 'GeoExplora';
 </script>
 
+<svelte:head>
+	<title>GeoExplora | Visor cartogràfic i geològic</title>
+	<meta
+		name="description"
+		content="Explora Catalunya amb cartografia i ortofoto de l’ICGC, una capa geològica amb opacitat ajustable i punts GeoJSON."
+	/>
+</svelte:head>
+
 <main>
 	<aside class="presentacio" aria-label="Informació del projecte">
 		<h1>{nomProjecte}</h1>

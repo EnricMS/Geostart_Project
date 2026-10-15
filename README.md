@@ -1,56 +1,51 @@
-# sv
+# GeoExplora
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Visor cartogràfic i geològic de Catalunya desenvolupat com a projecte personal d'aprenentatge i portfolio. Combina Svelte, JavaScript, MapLibre GL JS i una API de catàleg amb SvelteKit.
 
-## Creating a project
+Permet comparar una zona sobre cartografia grisa o ortofoto, superposar-hi el mapa geològic general de l'ICGC i controlar-ne l'opacitat.
 
-If you're seeing this, you've probably already done this step. Congrats!
+**Estat:** primera versió local. La publicació, les captures i la revisió visual final estan pendents. No és un producte oficial de l'ICGC.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+## Funcionalitats
 
-To recreate this project with the same configuration:
+- Cartografia grisa i ortofoto amb topònims, seleccionables com a mapa base.
+- Mapa geològic general via WMS, amb visibilitat i opacitat independents.
+- Punts de prova GeoJSON a Barcelona, Girona, Tarragona i Lleida, amb finestres informatives.
+- Control per amagar els punts i les seves finestres.
+- Ajust inicial de la vista a l'extensió dels punts.
+- Menú plegable, disposició adaptable i etiquetes en català.
+- Informació de fonts i enllaç a la llegenda oficial del servei geològic.
+- Estats de càrrega i error del catàleg i de les imatges geològiques.
+- Endpoint `/api/capes` amb les metadades i la connexió de la capa.
 
-```sh
-# recreate this project
-npx sv@1.1.1 create --template minimal --types jsdoc --add prettier eslint --install npm .
-```
+## Tecnologies
 
-## Adding features
+| Part            | Eines                                 |
+| --------------- | ------------------------------------- |
+| Interfície      | Svelte 5, HTML i CSS                  |
+| Aplicació i API | SvelteKit 3, JavaScript amb JSDoc     |
+| Cartografia     | MapLibre GL JS 6, GeoJSON i WMS       |
+| Desenvolupament | Node.js, npm, Vite, ESLint i Prettier |
 
-Add features to your project with `sv add`:
+## API
 
-```sh
-npx sv add
-```
+`GET /api/capes` retorna un array JSON amb una entrada geològica. No necessita autenticació ni rep paràmetres.
 
-For example, to add Tailwind CSS:
+| Camp                           | Significat                                   |
+| ------------------------------ | -------------------------------------------- |
+| `id`                           | Identificador estable de la capa             |
+| `nom`, `descripcio`            | Informació visible al visor                  |
+| `organisme`                    | Proveïdor de les dades                       |
+| `urlInformacio`, `urlLlegenda` | Documentació i llegenda oficials             |
+| `tipusServei`                  | WMS                                          |
+| `consultable`                  | `false`: aquesta versió no consulta atributs |
+| `urlTesselles`                 | Plantilla WMS GetMap amb `{bbox-epsg-3857}`  |
+| `atribucio`                    | Crèdits cartogràfics                         |
 
-```sh
-npx sv add tailwindcss
-```
+## Fonts i condicions d'ús
 
-## Developing
+- [Servei de Mapa Base de l'ICGC](https://www.icgc.cat/ca/Geoinformacio-i-mapes/Servei-de-Mapa-Base): bases grisa i ortofoto, capa geològica, característiques tècniques i atribucions.
+- [Llegenda del servei Mapa Base Geològic](https://geoserveis.icgc.cat/vector02/rest/services/mapa_base_geologic/MapServer/legend): simbologia del servei. És extensa i agrupa dades de diverses escales.
+- [MapLibre GL JS](https://maplibre.org/maplibre-gl-js/docs/): biblioteca cartogràfica amb llicència BSD-3-Clause.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Les atribucions es mantenen visibles al mapa. Les dades i les imatges dels proveïdors conserven les seves condicions d'ús; la llicència de MapLibre no s'estén als mapes ni al codi propi del projecte. Consultar el detall de l'ICGC, OpenStreetMap/OpenMapTiles i els proveïdors d'imatge que corresponguin a cada base i territori.

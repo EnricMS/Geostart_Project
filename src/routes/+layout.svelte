@@ -1,12 +1,12 @@
 <script>
-	import favicon from '#lib/assets/favicon.svg';
+	import icona from '#lib/assets/favicon.svg';
 
 	/** @type {{children: import('svelte').Snippet}} */
 	let { children } = $props();
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<link rel="icon" type="image/svg+xml" href={icona} />
 </svelte:head>
 
 {@render children()}

@@ -15,6 +15,8 @@
 	let contenidorMapa;
 	let mostrarPunts = $state(true);
 	let mostrarGeologia = $state(false);
+	let carregantGeologia = $state(false);
+	let errorGeologia = $state('');
 	let opacitatGeologia = $state(70);
 	let baseSeleccionada = $state('gris');
 
@@ -26,6 +28,7 @@
 	 *   organisme: string,
 	 *   urlTesselles: string,
 	 *   atribucio: string,
+	 *   urlLlegenda: string,
 	 *   urlInformacio: string
 	 * }[]}
 	 */
@@ -65,6 +68,8 @@
 		}
 
 		baseSeleccionada = base;
+		errorGeologia = '';
+		carregantGeologia = mostrarGeologia;
 		estilPreparat = false;
 		mapa.setStyle(estilsBase[base], { diff: false });
 	}
@@ -106,9 +111,12 @@
 
 	function alternarGeologia() {
 		mostrarGeologia = !mostrarGeologia;
+		errorGeologia = '';
+		carregantGeologia = mostrarGeologia;
 
 		if (mapa?.getLayer('capa-geologia')) {
 			mapa.setLayoutProperty('capa-geologia', 'visibility', mostrarGeologia ? 'visible' : 'none');
+			carregantGeologia = mostrarGeologia && !mapa.isSourceLoaded('font-geologia');
 		}
 	}
 
@@ -133,7 +141,7 @@
 			}
 
 			catalegCapes = await resposta.json();
-      prepararGeologia();
+			prepararGeologia();
 		} catch {
 			errorCataleg = 'No s’ha pogut carregar el catàleg de capes.';
 		} finally {
@@ -149,7 +157,34 @@
 			container: contenidorMapa,
 			style: estilsBase.gris,
 			center: [2, 41.8],
-			zoom: 7
+			zoom: 7,
+			locale: {
+				'Map.Title': 'Mapa interactiu',
+				'Marker.Title': 'Punt del mapa',
+				'AttributionControl.ToggleAttribution': 'Mostrar o amagar les atribucions',
+				'AttributionControl.MapFeedback': 'Comentaris sobre el mapa',
+				'Popup.Close': 'Tancar la finestra',
+				'LogoControl.Title': 'Logotip de MapLibre'
+			}
+		});
+
+		mapa.on('sourcedataloading', (esdeveniment) => {
+			if (esdeveniment.sourceId === 'font-geologia' && mostrarGeologia) {
+				carregantGeologia = true;
+			}
+		});
+
+		mapa.on('sourcedata', (esdeveniment) => {
+			if (esdeveniment.sourceId === 'font-geologia') {
+				carregantGeologia = mostrarGeologia && !esdeveniment.isSourceLoaded;
+			}
+		});
+
+		mapa.on('error', (esdeveniment) => {
+			if ('sourceId' in esdeveniment && esdeveniment.sourceId === 'font-geologia') {
+				errorGeologia =
+					'No s’han pogut carregar algunes imatges de la geologia. La vista pot ser incompleta.';
+			}
 		});
 
 		mapa.on('style.load', () => {
@@ -247,6 +282,25 @@
 					<input type="checkbox" checked={mostrarGeologia} onchange={alternarGeologia} />
 					Mapa geològic general
 				</label>
+				<p class="avis-geologia">
+					La informació varia segons l’escala. Amb opacitat reduïda, els colors es barregen amb el
+					fons; consulta la llegenda al 100 %.
+				</p>
+				<div class="estat-capa" role="status">
+					{#if !mostrarGeologia}
+						<p>Capa desactivada.</p>
+					{:else if errorCataleg}
+						<p class="error-capa">La geologia no està disponible: no s’ha carregat el catàleg.</p>
+					{:else if errorGeologia}
+						<p class="error-capa">{errorGeologia}</p>
+					{:else if carregantCataleg}
+						<p>Esperant el catàleg de capes…</p>
+					{:else if carregantGeologia}
+						<p>Carregant la capa geològica…</p>
+					{:else}
+						<p>Capa activada.</p>
+					{/if}
+				</div>
 				<div class="control-opacitat">
 					<label for="opacitat-geologia">
 						Opacitat: {opacitatGeologia} %
@@ -277,9 +331,14 @@
 								<h3>{capa.nom}</h3>
 								<p>{capa.descripcio}</p>
 								<p>Font: {capa.organisme}</p>
-								<a href={capa.urlInformacio} target="_blank" rel="noopener noreferrer">
+								<a href={capa.urlInformacio} target="_blank" rel="external noopener noreferrer">
 									Informació de la font (pestanya nova)
 								</a>
+								<p>
+									<a href={capa.urlLlegenda} target="_blank" rel="external noopener noreferrer"
+										>Llegenda oficial del servei (pestanya nova)</a
+									>
+								</p>
 							</article>
 						{/each}
 					{/if}
@@ -293,6 +352,7 @@
 					<input type="checkbox" checked={mostrarPunts} onchange={alternarPunts} />
 					Mostrar punts de prova
 				</label>
+				<p class="avis-geologia">Coordenades aproximades de ciutats, sense valor d’inventari.</p>
 			</fieldset>
 		</details>
 	</aside>
@@ -350,6 +410,22 @@
 
 	.control-opacitat {
 		margin-top: 16px;
+	}
+
+	.estat-capa {
+		font-size: 0.85rem;
+		line-height: 1.5;
+		color: #475569;
+	}
+
+	.avis-geologia {
+		font-size: 0.8rem;
+		line-height: 1.5;
+		color: #475569;
+	}
+
+	.error-capa {
+		color: #9a3412;
 	}
 
 	.control-opacitat input {
