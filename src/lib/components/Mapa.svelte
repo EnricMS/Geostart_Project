@@ -14,6 +14,8 @@
 	/** @type {HTMLDivElement} */
 	let contenidorMapa;
 	let mostrarPunts = $state(true);
+	let mostrarGeologia = $state(false);
+	let opacitatGeologia = $state(70);
 	let baseSeleccionada = $state('gris');
 
 	/** @type {MapaMapLibre | undefined} */
@@ -49,6 +51,55 @@
 		mapa.setStyle(estilsBase[base]);
 	}
 
+	function prepararGeologia() {
+		if (!mapa) {
+			return;
+		}
+
+		if (!mapa.getSource('font-geologia')) {
+			mapa.addSource('font-geologia', {
+				type: 'raster',
+				tiles: [
+					'https://geoserveis.icgc.cat/servei/catalunya/mapa-base/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=geologic&STYLES=&FORMAT=image/png&SRS=EPSG:3857&BBOX={bbox-epsg-3857}&WIDTH=256&HEIGHT=256'
+				],
+				tileSize: 256,
+				attribution:
+					'Catalunya © ICGC (CC BY) · Resta del món © OpenMapTiles © OpenStreetMap contributors'
+			});
+		}
+
+		if (!mapa.getLayer('capa-geologia')) {
+			mapa.addLayer({
+				id: 'capa-geologia',
+				type: 'raster',
+				source: 'font-geologia',
+				layout: {
+					visibility: mostrarGeologia ? 'visible' : 'none'
+				},
+				paint: {
+					'raster-opacity': opacitatGeologia / 100
+				}
+			});
+		}
+	}
+
+	function alternarGeologia() {
+		mostrarGeologia = !mostrarGeologia;
+
+		if (mapa?.getLayer('capa-geologia')) {
+			mapa.setLayoutProperty('capa-geologia', 'visibility', mostrarGeologia ? 'visible' : 'none');
+		}
+	}
+
+	/** @param {number} percentatge */
+	function canviarOpacitatGeologia(percentatge) {
+		opacitatGeologia = percentatge;
+
+		if (mapa?.getLayer('capa-geologia')) {
+			mapa.setPaintProperty('capa-geologia', 'raster-opacity', percentatge / 100);
+		}
+	}
+
 	onMount(() => {
 		establirRutaWorker(rutaWorker);
 
@@ -58,6 +109,8 @@
 			center: [2, 41.8],
 			zoom: 7
 		});
+
+		mapa.on('style.load', prepararGeologia);
 
 		const limits = new LimitsGeografics();
 
@@ -142,6 +195,32 @@
 			</fieldset>
 
 			<fieldset>
+				<legend class="nom-grup">Geologia</legend>
+
+				<label>
+					<input type="checkbox" checked={mostrarGeologia} onchange={alternarGeologia} />
+					Mapa geològic general
+				</label>
+				<div class="control-opacitat">
+					<label for="opacitat-geologia">
+						Opacitat: {opacitatGeologia} %
+					</label>
+
+					<input
+						id="opacitat-geologia"
+						type="range"
+						min="0"
+						max="100"
+						step="1"
+						value={opacitatGeologia}
+						disabled={!mostrarGeologia}
+						oninput={(esdeveniment) =>
+							canviarOpacitatGeologia(Number(esdeveniment.currentTarget.value))}
+					/>
+				</div>
+			</fieldset>
+
+			<fieldset>
 				<legend class="nom-grup">Punts</legend>
 
 				<label>
@@ -203,6 +282,16 @@
 		cursor: pointer;
 	}
 
+	.control-opacitat {
+		margin-top: 16px;
+	}
+
+	.control-opacitat input {
+		display: block;
+		width: 100%;
+		margin: 12px 0 0;
+		accent-color: #166534;
+	}
 	@media (max-width: 700px) {
 		.visor {
 			grid-template-columns: 1fr;
