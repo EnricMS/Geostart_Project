@@ -1,0 +1,50 @@
+
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.17, 41.39]
+      },
+      "properties": {
+        "nom": "Barcelona",
+        "descripcio": "Punt de prova a Barcelona."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.82, 41.98]
+      },
+      "properties": {
+        "nom": "Girona",
+        "descripcio": "Punt de prova a Girona."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1.24, 41.12]
+      },
+      "properties": {
+        "nom": "Tarragona",
+        "descripcio": "Punt de prova a Tarragona."
+      }
+    },
+        {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [0.622, 41.62]
+      },
+      "properties": {
+        "nom": "Lleida",
+        "descripcio": "Punt de prova a Lleida."
+      }
+    }
+  ]
+}
