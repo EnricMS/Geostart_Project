@@ -50,7 +50,7 @@ button:focus {
 section {
   margin-top: 20px;
   padding: 16px;
-  background-color: #f0fdf4;
+  background-color: #e8efe5;
   border-left: 4px solid #166534;
 }
 

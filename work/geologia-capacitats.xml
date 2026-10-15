@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<WMS_Capabilities xmlns="http://www.opengis.net/wms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:esri_wms="http://www.esri.com/wms" version="1.3.0" xsi:schemaLocation="http://www.opengis.net/wms http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd http://www.esri.com/wms https://seage113dev02.icgc.local/server/services/geologia_territorial/MapServer/WMSServer?version=1.3.0%26service=WMS%26request=GetSchemaExtension">
+	<Service>
+		<Name><![CDATA[ICGC - Servei de visualització WMS de geologia territorial]]></Name>
+		<Title><![CDATA[ICGC - Servei de visualització WMS de geologia territorial]]></Title>
+		<Abstract><![CDATA[Servei de visualització WMS de geologia territorial que agrupa diferents conjunts d'informació de les característiques geològiques del territori.]]></Abstract>
+		<KeywordList><Keyword><![CDATA[]]></Keyword></KeywordList>
+		<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?"/>
+		<ContactInformation>
+			<ContactPersonPrimary>
+				<ContactPerson><![CDATA[ICGC]]></ContactPerson>
+				<ContactOrganization><![CDATA[Institut Cartogràfic i Geològic de Catalunya]]></ContactOrganization>
+			</ContactPersonPrimary>
+			<ContactPosition><![CDATA[webmaster]]></ContactPosition>
+			<ContactAddress>
+				<AddressType><![CDATA[postal]]></AddressType>
+				<Address><![CDATA[Parc de Montjuïc]]></Address>
+				<City><![CDATA[Barcelona]]></City>
+				<StateOrProvince><![CDATA[Catalunya]]></StateOrProvince>
+				<PostCode><![CDATA[08038]]></PostCode>
+				<Country><![CDATA[Spain]]></Country>
+				<ContactAddressType><![CDATA[postal]]></ContactAddressType></ContactAddress>
+			<ContactVoiceTelephone><![CDATA[+34 93 567 15 00]]></ContactVoiceTelephone>
+			<ContactFacsimileTelephone><![CDATA[+34 93 567 15 67]]></ContactFacsimileTelephone>
+			<ContactElectronicMailAddress><![CDATA[icgc@icgc.cat]]></ContactElectronicMailAddress>
+		</ContactInformation>
+		<Fees><![CDATA[http://www.icgc.cat/condicions]]></Fees>
+		<AccessConstraints><![CDATA[Copyright]]></AccessConstraints>
+		<MaxWidth>4096</MaxWidth>
+		<MaxHeight>4096</MaxHeight>
+	</Service>
+	<Capability>
+		<Request>
+			<GetCapabilities>
+				<Format>application/vnd.ogc.wms_xml</Format>
+				<Format>text/xml</Format>
+				<DCPType>
+					<HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?"/></Get></HTTP>
+				</DCPType>
+			</GetCapabilities>
+			<GetMap>
+				<Format>image/bmp</Format>
+				<Format>image/jpeg</Format>
+				<Format>image/tiff</Format>
+				<Format>image/png</Format>
+				<Format>image/png8</Format>
+				<Format>image/png24</Format>
+				<Format>image/png32</Format>
+				<Format>image/gif</Format>
+				<Format>image/svg+xml</Format>
+				<DCPType>
+					<HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?"/></Get></HTTP>
+				</DCPType>
+			</GetMap>
+			<GetFeatureInfo>
+				<Format>application/vnd.esri.wms_raw_xml</Format>
+				<Format>application/vnd.esri.wms_featureinfo_xml</Format>
+				<Format>application/vnd.ogc.wms_xml</Format>
+				<Format>application/geo+json</Format>
+				<Format>text/xml</Format>
+				<Format>text/html</Format>
+				<Format>text/plain</Format>
+				<DCPType>
+					<HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?"/></Get></HTTP>
+				</DCPType>
+			</GetFeatureInfo>
+			<esri_wms:GetStyles>
+				<Format>application/vnd.ogc.sld+xml</Format>
+				<DCPType>
+					<HTTP><Get><OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?"/></Get></HTTP>
+				</DCPType>
+			</esri_wms:GetStyles>
+		</Request>
+		<Exception>
+			<Format>application/vnd.ogc.se_xml</Format>
+			<Format>application/vnd.ogc.se_inimage</Format>
+			<Format>application/vnd.ogc.se_blank</Format>
+			<Format>text/xml</Format>
+			<Format>XML</Format>
+		</Exception>
+		<Layer>
+			<Title><![CDATA[Geologia territorial]]></Title>
+			<CRS>CRS:84</CRS>
+			<CRS>EPSG:4326</CRS>
+			<CRS>EPSG:25831</CRS>
+			<EX_GeographicBoundingBox><westBoundLongitude>0.003913</westBoundLongitude><eastBoundLongitude>3.366791</eastBoundLongitude><southBoundLatitude>40.431762</southBoundLatitude><northBoundLatitude>42.941784</northBoundLatitude></EX_GeographicBoundingBox>
+			<BoundingBox CRS="CRS:84" minx="0.003913" miny="40.431762" maxx="3.366791" maxy="42.941784"/>
+			<BoundingBox CRS="EPSG:4326" minx="40.431762" miny="0.003913" maxx="42.941784" maxy="3.366791"/>
+			<BoundingBox CRS="EPSG:25831" minx="255400.000000" miny="4479673.993300" maxx="529925.000000" maxy="4754350.000000"/>
+			<Layer queryable="1">
+				<Title><![CDATA[Geologia territorial 1:50 000]]></Title>
+				<Abstract><![CDATA[Conjunts d'informació de les característiques geològiques del territori amb una resolució equivalent a l’escala 1:50 000.]]></Abstract>
+				<CRS>CRS:84</CRS>
+				<CRS>EPSG:4326</CRS>
+				<CRS>EPSG:25831</CRS>
+				<EX_GeographicBoundingBox><westBoundLongitude>0.038579</westBoundLongitude><eastBoundLongitude>3.336633</eastBoundLongitude><southBoundLatitude>40.491560</southBoundLatitude><northBoundLatitude>42.884510</northBoundLatitude></EX_GeographicBoundingBox>
+				<BoundingBox CRS="CRS:84" minx="0.038579" miny="40.491560" maxx="3.336633" maxy="42.884510"/>
+				<BoundingBox CRS="EPSG:4326" minx="40.491560" miny="0.038579" maxx="42.884510" maxy="3.336633"/>
+				<BoundingBox CRS="EPSG:25831" minx="258010.000000" miny="4486235.000000" maxx="527490.000000" maxy="4747990.000000"/>
+				<Layer queryable="1">
+					<Name>geologia-territorial-50000-geologic</Name>
+					<Title><![CDATA[Mapa geològic 1:50 000]]></Title>
+					<Abstract><![CDATA[Síntesi de la geologia de Catalunya a escala 1: 50 000 mitjançant la representació cartogràfica d’unitats geològiques de caràcter litoestratigràfic, dels elements estructurals majors (discordances, falles i plecs) i de tipus de contacte entres unitats.]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25831</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>0.038579</westBoundLongitude><eastBoundLongitude>3.336633</eastBoundLongitude><southBoundLatitude>40.491560</southBoundLatitude><northBoundLatitude>42.884510</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="0.038579" miny="40.491560" maxx="3.336633" maxy="42.884510"/>
+					<BoundingBox CRS="EPSG:4326" minx="40.491560" miny="0.038579" maxx="42.884510" maxy="3.336633"/>
+					<BoundingBox CRS="EPSG:25831" minx="258010.000000" miny="4486235.000000" maxx="527490.000000" maxy="4747990.000000"/>
+					<Style>
+						<Name>default</Name>
+						<Title><![CDATA[geologia-territorial-50000-geologic]]></Title>
+						<LegendURL width="96" height="72">
+							<Format>image/png</Format>
+							<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=geologia-territorial-50000-geologic" xlink:type="simple"/>
+						</LegendURL>
+					</Style>
+				</Layer>
+				<Layer queryable="1">
+					<Title><![CDATA[Mapa geològic 1:50 000 capes]]></Title>
+					<Abstract><![CDATA[Síntesi de la geologia de Catalunya a escala 1: 50 000 mitjançant la representació cartogràfica d’unitats geològiques de caràcter litoestratigràfic, dels elements estructurals majors (discordances, falles i plecs) i de tipus de contacte entres unitats.]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25831</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>0.040167</westBoundLongitude><eastBoundLongitude>3.335555</eastBoundLongitude><southBoundLatitude>40.491849</southBoundLatitude><northBoundLatitude>42.884429</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="0.040167" miny="40.491849" maxx="3.335555" maxy="42.884429"/>
+					<BoundingBox CRS="EPSG:4326" minx="40.491849" miny="0.040167" maxx="42.884429" maxy="3.335555"/>
+					<BoundingBox CRS="EPSG:25831" minx="258139.649600" miny="4486262.977600" maxx="527401.970700" maxy="4747980.932300"/>
+					<Layer queryable="1">
+						<Name>unitats-geologiques-50000</Name>
+						<Title><![CDATA[Unitats geològiques 1:50 000]]></Title>
+						<Abstract><![CDATA[Polígons simples que delimiten la intersecció de cossos geològics 3D amb la superfície del terreny. Les unitats geològiques són de caràcter litoestratigràfic (caracteritzades per una litologia i edat geològica específiques )i estan limitades pels diferents tipus de contactes geològics, falles i encavalcaments.]]></Abstract>
+						<CRS>CRS:84</CRS>
+						<CRS>EPSG:4326</CRS>
+						<CRS>EPSG:25831</CRS>
+						<EX_GeographicBoundingBox><westBoundLongitude>0.040167</westBoundLongitude><eastBoundLongitude>3.335555</eastBoundLongitude><southBoundLatitude>40.491849</southBoundLatitude><northBoundLatitude>42.884429</northBoundLatitude></EX_GeographicBoundingBox>
+						<BoundingBox CRS="CRS:84" minx="0.040167" miny="40.491849" maxx="3.335555" maxy="42.884429"/>
+						<BoundingBox CRS="EPSG:4326" minx="40.491849" miny="0.040167" maxx="42.884429" maxy="3.335555"/>
+						<BoundingBox CRS="EPSG:25831" minx="258139.649600" miny="4486262.977600" maxx="527401.970700" maxy="4747980.932300"/>
+						<Style>
+							<Name>default</Name>
+							<Title><![CDATA[unitats-geologiques-50000]]></Title>
+							<LegendURL width="84" height="4096">
+								<Format>image/png</Format>
+								<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=unitats-geologiques-50000" xlink:type="simple"/>
+							</LegendURL>
+						</Style>
+					</Layer>
+					<Layer queryable="1">
+						<Name>falles-50000</Name>
+						<Title><![CDATA[Falles 1:50 000]]></Title>
+						<Abstract><![CDATA[Línies en la superfície del terreny que representen les fractures o zones de fractura entre dos blocs de roca, al llarg de les quals s'ha produït un desplaçament relatiu dels compartiments en què queda dividida la unitat geològica o el conjunt d’unitats afectades.]]></Abstract>
+						<CRS>CRS:84</CRS>
+						<CRS>EPSG:4326</CRS>
+						<CRS>EPSG:25831</CRS>
+						<EX_GeographicBoundingBox><westBoundLongitude>0.042532</westBoundLongitude><eastBoundLongitude>3.317599</eastBoundLongitude><southBoundLatitude>40.510116</southBoundLatitude><northBoundLatitude>42.878923</northBoundLatitude></EX_GeographicBoundingBox>
+						<BoundingBox CRS="CRS:84" minx="0.042532" miny="40.510116" maxx="3.317599" maxy="42.878923"/>
+						<BoundingBox CRS="EPSG:4326" minx="40.510116" miny="0.042532" maxx="42.878923" maxy="3.317599"/>
+						<BoundingBox CRS="EPSG:25831" minx="258311.607700" miny="4488287.546700" maxx="525937.939900" maxy="4747369.513400"/>
+						<Style>
+							<Name>default</Name>
+							<Title><![CDATA[falles-50000]]></Title>
+							<LegendURL width="342" height="288">
+								<Format>image/png</Format>
+								<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=falles-50000" xlink:type="simple"/>
+							</LegendURL>
+						</Style>
+						<MaxScaleDenominator>944940.476190</MaxScaleDenominator>
+					</Layer>
+					<Layer queryable="1">
+						<Name>plecs-50000</Name>
+						<Title><![CDATA[Plecs 1:50 000]]></Title>
+						<Abstract><![CDATA[Línies que representen la traça dels anticlinals i sinclinals, en la superfície del terreny.]]></Abstract>
+						<CRS>CRS:84</CRS>
+						<CRS>EPSG:4326</CRS>
+						<CRS>EPSG:25831</CRS>
+						<EX_GeographicBoundingBox><westBoundLongitude>0.044896</westBoundLongitude><eastBoundLongitude>3.195933</eastBoundLongitude><southBoundLatitude>40.573795</southBoundLatitude><northBoundLatitude>42.860266</northBoundLatitude></EX_GeographicBoundingBox>
+						<BoundingBox CRS="CRS:84" minx="0.044896" miny="40.573795" maxx="3.195933" maxy="42.860266"/>
+						<BoundingBox CRS="EPSG:4326" minx="40.573795" miny="0.044896" maxx="42.860266" maxy="3.195933"/>
+						<BoundingBox CRS="EPSG:25831" minx="258432.390400" miny="4495360.764000" maxx="516006.326200" maxy="4745297.816900"/>
+						<Style>
+							<Name>default</Name>
+							<Title><![CDATA[plecs-50000]]></Title>
+							<LegendURL width="288" height="234">
+								<Format>image/png</Format>
+								<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=plecs-50000" xlink:type="simple"/>
+							</LegendURL>
+						</Style>
+						<MaxScaleDenominator>236235.119048</MaxScaleDenominator>
+					</Layer>
+					<Layer queryable="1">
+						<Name>contactes-50000</Name>
+						<Title><![CDATA[Contactes 1:50 000]]></Title>
+						<Abstract><![CDATA[Línies que delimiten les unitats geològiques, en la superfície del terreny.]]></Abstract>
+						<CRS>CRS:84</CRS>
+						<CRS>EPSG:4326</CRS>
+						<CRS>EPSG:25831</CRS>
+						<EX_GeographicBoundingBox><westBoundLongitude>0.041065</westBoundLongitude><eastBoundLongitude>3.325704</eastBoundLongitude><southBoundLatitude>40.493369</southBoundLatitude><northBoundLatitude>42.870619</northBoundLatitude></EX_GeographicBoundingBox>
+						<BoundingBox CRS="CRS:84" minx="0.041065" miny="40.493369" maxx="3.325704" maxy="42.870619"/>
+						<BoundingBox CRS="EPSG:4326" minx="40.493369" miny="0.041065" maxx="42.870619" maxy="3.325704"/>
+						<BoundingBox CRS="EPSG:25831" minx="258159.202800" miny="4486431.195600" maxx="526603.441700" maxy="4746447.373400"/>
+						<Style>
+							<Name>default</Name>
+							<Title><![CDATA[contactes-50000]]></Title>
+							<LegendURL width="342" height="432">
+								<Format>image/png</Format>
+								<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=contactes-50000" xlink:type="simple"/>
+							</LegendURL>
+						</Style>
+						<MaxScaleDenominator>141741.071429</MaxScaleDenominator>
+					</Layer>
+				</Layer>
+			</Layer>
+			<Layer queryable="1">
+				<Title><![CDATA[Geologia territorial 1:250 000]]></Title>
+				<Abstract><![CDATA[Conjunts d'informació de les característiques geològiques del territori amb una resolució equivalent a l’escala 1:250 000.]]></Abstract>
+				<CRS>CRS:84</CRS>
+				<CRS>EPSG:4326</CRS>
+				<CRS>EPSG:25831</CRS>
+				<EX_GeographicBoundingBox><westBoundLongitude>0.003913</westBoundLongitude><eastBoundLongitude>3.366791</eastBoundLongitude><southBoundLatitude>40.431762</southBoundLatitude><northBoundLatitude>42.941784</northBoundLatitude></EX_GeographicBoundingBox>
+				<BoundingBox CRS="CRS:84" minx="0.003913" miny="40.431762" maxx="3.366791" maxy="42.941784"/>
+				<BoundingBox CRS="EPSG:4326" minx="40.431762" miny="0.003913" maxx="42.941784" maxy="3.366791"/>
+				<BoundingBox CRS="EPSG:25831" minx="255400.000000" miny="4479673.993300" maxx="529925.000000" maxy="4754350.000000"/>
+				<Layer queryable="1">
+					<Name>geologia-territorial-250000-geologic</Name>
+					<Title><![CDATA[Mapa geològic 1:250 000]]></Title>
+					<Abstract><![CDATA[Síntesi de la constitució geològica de Catalunya mitjançant la representació cartogràfica d’unitats geològiques de caràcter litoestratigràfic, dels elements estructurals majors (discordances, falles i plecs) i de tipus de contacte entres unitats amb una resolució equivalent a l’escala 1:250 000.]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25831</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>0.003913</westBoundLongitude><eastBoundLongitude>3.366791</eastBoundLongitude><southBoundLatitude>40.454265</southBoundLatitude><northBoundLatitude>42.941784</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="0.003913" miny="40.454265" maxx="3.366791" maxy="42.941784"/>
+					<BoundingBox CRS="EPSG:4326" minx="40.454265" miny="0.003913" maxx="42.941784" maxy="3.366791"/>
+					<BoundingBox CRS="EPSG:25831" minx="255400.000000" miny="4482175.000000" maxx="529925.000000" maxy="4754350.000000"/>
+					<Style>
+						<Name>default</Name>
+						<Title><![CDATA[geologia-territorial-250000-geologic]]></Title>
+						<LegendURL width="96" height="72">
+							<Format>image/png</Format>
+							<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=geologia-territorial-250000-geologic" xlink:type="simple"/>
+						</LegendURL>
+					</Style>
+				</Layer>
+				<Layer queryable="1">
+					<Title><![CDATA[Mapa geològic 1:250 000 capes]]></Title>
+					<Abstract><![CDATA[Síntesi de la constitució geològica de Catalunya mitjançant la representació cartogràfica d’unitats geològiques de caràcter litoestratigràfic, dels elements estructurals majors (discordances, falles i plecs) i de tipus de contacte entres unitats amb una resolució equivalent a l’escala 1:250 000. Representat per capes.]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25831</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>0.035655</westBoundLongitude><eastBoundLongitude>3.335824</eastBoundLongitude><southBoundLatitude>40.432494</southBoundLatitude><northBoundLatitude>42.918795</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="0.035655" miny="40.432494" maxx="3.335824" maxy="42.918795"/>
+					<BoundingBox CRS="EPSG:4326" minx="40.432494" miny="0.035655" maxx="42.918795" maxy="3.335824"/>
+					<BoundingBox CRS="EPSG:25831" minx="257904.880000" miny="4479673.993300" maxx="527408.730000" maxy="4751797.220000"/>
+					<Layer queryable="1">
+						<Name>unitats-geologiques-250000</Name>
+						<Title><![CDATA[Unitats geològiques 1:250 000]]></Title>
+						<Abstract><![CDATA[Polígons simples que delimiten la intersecció de volums de roca (cossos geològics 3D), caracteritzats per una litologia i edat geològica específiques, amb la superfície del terreny.]]></Abstract>
+						<CRS>CRS:84</CRS>
+						<CRS>EPSG:4326</CRS>
+						<CRS>EPSG:25831</CRS>
+						<EX_GeographicBoundingBox><westBoundLongitude>0.035655</westBoundLongitude><eastBoundLongitude>3.335824</eastBoundLongitude><southBoundLatitude>40.478587</southBoundLatitude><northBoundLatitude>42.918795</northBoundLatitude></EX_GeographicBoundingBox>
+						<BoundingBox CRS="CRS:84" minx="0.035655" miny="40.478587" maxx="3.335824" maxy="42.918795"/>
+						<BoundingBox CRS="EPSG:4326" minx="40.478587" miny="0.035655" maxx="42.918795" maxy="3.335824"/>
+						<BoundingBox CRS="EPSG:25831" minx="257904.880000" miny="4484796.587400" maxx="527408.730000" maxy="4751797.220000"/>
+						<Style>
+							<Name>default</Name>
+							<Title><![CDATA[unitats-geologiques-250000]]></Title>
+							<LegendURL width="78" height="4096">
+								<Format>image/png</Format>
+								<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=unitats-geologiques-250000" xlink:type="simple"/>
+							</LegendURL>
+						</Style>
+					</Layer>
+					<Layer queryable="1">
+						<Name>falles-250000</Name>
+						<Title><![CDATA[Falles 1:250 000]]></Title>
+						<Abstract><![CDATA[Línies que representen les fractures de l'escorça terrestre al llarg de les quals s'ha produït un desplaçament relatiu dels dos blocs o compartiments en què queda dividida la roca o el conjunt de roques afectades, en la superfície del terreny.]]></Abstract>
+						<CRS>CRS:84</CRS>
+						<CRS>EPSG:4326</CRS>
+						<CRS>EPSG:25831</CRS>
+						<EX_GeographicBoundingBox><westBoundLongitude>0.035656</westBoundLongitude><eastBoundLongitude>3.315099</eastBoundLongitude><southBoundLatitude>40.478588</southBoundLatitude><northBoundLatitude>42.918792</northBoundLatitude></EX_GeographicBoundingBox>
+						<BoundingBox CRS="CRS:84" minx="0.035656" miny="40.478588" maxx="3.315099" maxy="42.918792"/>
+						<BoundingBox CRS="EPSG:4326" minx="40.478588" miny="0.035656" maxx="42.918792" maxy="3.315099"/>
+						<BoundingBox CRS="EPSG:25831" minx="257904.928200" miny="4484796.705300" maxx="525717.190000" maxy="4751796.803600"/>
+						<Style>
+							<Name>default</Name>
+							<Title><![CDATA[falles-250000]]></Title>
+							<LegendURL width="426" height="414">
+								<Format>image/png</Format>
+								<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=falles-250000" xlink:type="simple"/>
+							</LegendURL>
+						</Style>
+						<MaxScaleDenominator>944940.476190</MaxScaleDenominator>
+					</Layer>
+					<Layer queryable="1">
+						<Name>plecs-250000</Name>
+						<Title><![CDATA[Plecs 1:250 000]]></Title>
+						<Abstract><![CDATA[Línies que representen la traça dels anticlinals i sinclinals, en la superfície del terreny.]]></Abstract>
+						<CRS>CRS:84</CRS>
+						<CRS>EPSG:4326</CRS>
+						<CRS>EPSG:25831</CRS>
+						<EX_GeographicBoundingBox><westBoundLongitude>0.036029</westBoundLongitude><eastBoundLongitude>2.518745</eastBoundLongitude><southBoundLatitude>40.572203</southBoundLatitude><northBoundLatitude>42.909906</northBoundLatitude></EX_GeographicBoundingBox>
+						<BoundingBox CRS="CRS:84" minx="0.036029" miny="40.572203" maxx="2.518745" maxy="42.909906"/>
+						<BoundingBox CRS="EPSG:4326" minx="40.572203" miny="0.036029" maxx="42.909906" maxy="2.518745"/>
+						<BoundingBox CRS="EPSG:25831" minx="257904.963500" miny="4495200.950000" maxx="459285.980000" maxy="4750930.700000"/>
+						<Style>
+							<Name>default</Name>
+							<Title><![CDATA[plecs-250000]]></Title>
+							<LegendURL width="168" height="72">
+								<Format>image/png</Format>
+								<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=plecs-250000" xlink:type="simple"/>
+							</LegendURL>
+						</Style>
+						<MaxScaleDenominator>472470.238095</MaxScaleDenominator>
+					</Layer>
+					<Layer queryable="1">
+						<Name>contactes-250000</Name>
+						<Title><![CDATA[Contactes 1:250 000]]></Title>
+						<Abstract><![CDATA[Línies que delimiten les unitats geològiques, en la superfície del terreny.]]></Abstract>
+						<CRS>CRS:84</CRS>
+						<CRS>EPSG:4326</CRS>
+						<CRS>EPSG:25831</CRS>
+						<EX_GeographicBoundingBox><westBoundLongitude>0.035655</westBoundLongitude><eastBoundLongitude>3.315384</eastBoundLongitude><southBoundLatitude>40.478587</southBoundLatitude><northBoundLatitude>42.918795</northBoundLatitude></EX_GeographicBoundingBox>
+						<BoundingBox CRS="CRS:84" minx="0.035655" miny="40.478587" maxx="3.315384" maxy="42.918795"/>
+						<BoundingBox CRS="EPSG:4326" minx="40.478587" miny="0.035655" maxx="42.918795" maxy="3.315384"/>
+						<BoundingBox CRS="EPSG:25831" minx="257904.887000" miny="4484796.601800" maxx="525740.480000" maxy="4751797.204900"/>
+						<Style>
+							<Name>default</Name>
+							<Title><![CDATA[contactes-250000]]></Title>
+							<LegendURL width="198" height="90">
+								<Format>image/png</Format>
+								<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=contactes-250000" xlink:type="simple"/>
+							</LegendURL>
+						</Style>
+						<MaxScaleDenominator>283482.142857</MaxScaleDenominator>
+					</Layer>
+					<Layer queryable="1">
+						<Name>sondatges-exploracio</Name>
+						<Title><![CDATA[Sondatges d'exploració]]></Title>
+						<Abstract><![CDATA[Ubicació dels sondatges realitzats per l’exploració d’hidrocarburs.]]></Abstract>
+						<CRS>CRS:84</CRS>
+						<CRS>EPSG:4326</CRS>
+						<CRS>EPSG:25831</CRS>
+						<EX_GeographicBoundingBox><westBoundLongitude>0.503119</westBoundLongitude><eastBoundLongitude>3.041589</eastBoundLongitude><southBoundLatitude>40.442250</southBoundLatitude><northBoundLatitude>42.314574</northBoundLatitude></EX_GeographicBoundingBox>
+						<BoundingBox CRS="CRS:84" minx="0.503119" miny="40.442250" maxx="3.041589" maxy="42.314574"/>
+						<BoundingBox CRS="EPSG:4326" minx="40.442250" miny="0.503119" maxx="42.314574" maxy="3.041589"/>
+						<BoundingBox CRS="EPSG:25831" minx="294140.996000" miny="4479673.993300" maxx="503427.304800" maxy="4684704.030700"/>
+						<Style>
+							<Name>default</Name>
+							<Title><![CDATA[sondatges-exploracio]]></Title>
+							<LegendURL width="18" height="18">
+								<Format>image/png</Format>
+								<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=sondatges-exploracio" xlink:type="simple"/>
+							</LegendURL>
+						</Style>
+						<MaxScaleDenominator>283482.142857</MaxScaleDenominator>
+					</Layer>
+				</Layer>
+			</Layer>
+			<Layer queryable="1">
+				<Title><![CDATA[Mesures d'estructures geològiques]]></Title>
+				<Abstract><![CDATA[Mesures que determinen la orientació espacial en 3D d’elements estructurals geològics planars i lineals.]]></Abstract>
+				<CRS>CRS:84</CRS>
+				<CRS>EPSG:4326</CRS>
+				<CRS>EPSG:25831</CRS>
+				<EX_GeographicBoundingBox><westBoundLongitude>0.045741</westBoundLongitude><eastBoundLongitude>3.324471</eastBoundLongitude><southBoundLatitude>40.501658</southBoundLatitude><northBoundLatitude>42.879382</northBoundLatitude></EX_GeographicBoundingBox>
+				<BoundingBox CRS="CRS:84" minx="0.045741" miny="40.501658" maxx="3.324471" maxy="42.879382"/>
+				<BoundingBox CRS="EPSG:4326" minx="40.501658" miny="0.045741" maxx="42.879382" maxy="3.324471"/>
+				<BoundingBox CRS="EPSG:25831" minx="258576.004500" miny="4487338.917400" maxx="526498.980000" maxy="4747420.543600"/>
+				<Layer queryable="1">
+					<Name>mesures-estructures-geologiques-planars</Name>
+					<Title><![CDATA[Mesures d'estructures geològiques planars]]></Title>
+					<Abstract><![CDATA[Punts amb la ubicació de les mesures que determinen la orientació espacial en 3D d’elements estructurals geològics bidimensionals (definits per un pla).]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25831</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>0.045790</westBoundLongitude><eastBoundLongitude>3.324466</eastBoundLongitude><southBoundLatitude>40.501658</southBoundLatitude><northBoundLatitude>42.878356</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="0.045790" miny="40.501658" maxx="3.324466" maxy="42.878356"/>
+					<BoundingBox CRS="EPSG:4326" minx="40.501658" miny="0.045790" maxx="42.878356" maxy="3.324466"/>
+					<BoundingBox CRS="EPSG:25831" minx="258576.004500" miny="4487338.917400" maxx="526498.980000" maxy="4747306.550100"/>
+					<Style>
+						<Name>default</Name>
+						<Title><![CDATA[mesures-estructures-geologiques-planars]]></Title>
+						<LegendURL width="681" height="288">
+							<Format>image/png</Format>
+							<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=mesures-estructures-geologiques-planars" xlink:type="simple"/>
+						</LegendURL>
+					</Style>
+				</Layer>
+				<Layer queryable="1">
+					<Name>mesures-estructures-geologiques-lineals</Name>
+					<Title><![CDATA[Mesures d'estructures geològiques lineals]]></Title>
+					<Abstract><![CDATA[Punts amb la ubicació de les mesures que determinen la orientació espacial en 3D d’elements estructurals geològics unidimensionals (definits per una línia).]]></Abstract>
+					<CRS>CRS:84</CRS>
+					<CRS>EPSG:4326</CRS>
+					<CRS>EPSG:25831</CRS>
+					<EX_GeographicBoundingBox><westBoundLongitude>0.507836</westBoundLongitude><eastBoundLongitude>3.318835</eastBoundLongitude><southBoundLatitude>41.283896</southBoundLatitude><northBoundLatitude>42.879382</northBoundLatitude></EX_GeographicBoundingBox>
+					<BoundingBox CRS="CRS:84" minx="0.507836" miny="41.283896" maxx="3.318835" maxy="42.879382"/>
+					<BoundingBox CRS="EPSG:4326" minx="41.283896" miny="0.507836" maxx="42.879382" maxy="3.318835"/>
+					<BoundingBox CRS="EPSG:25831" minx="296376.835900" miny="4573124.683800" maxx="526038.670000" maxy="4747420.543600"/>
+					<Style>
+						<Name>default</Name>
+						<Title><![CDATA[mesures-estructures-geologiques-lineals]]></Title>
+						<LegendURL width="600" height="126">
+							<Format>image/png</Format>
+							<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="https://geoserveis.icgc.cat/servei/catalunya/geologia-territorial/wms?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=mesures-estructures-geologiques-lineals" xlink:type="simple"/>
+						</LegendURL>
+					</Style>
+				</Layer>
+			</Layer>
+			<Abstract><![CDATA[Geologia territorial]]></Abstract></Layer>
+	</Capability>
+</WMS_Capabilities>

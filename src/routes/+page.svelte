@@ -1,37 +1,54 @@
 <script>
+	import PanellInformacio from '../lib/components/PanellInformacio.svelte';
+	import Mapa from '../lib/components/Mapa.svelte';
 
-  import PanellInformacio from '../lib/components/PanellInformacio.svelte';
-  import Mapa from '../lib/components/Mapa.svelte';
-
-  const nomProjecte = 'GeoExplora';
-
+	const nomProjecte = 'GeoExplora';
 </script>
 
 <main>
-  <h1>Geo Explora</h1>
-  <p>Un visor per a explorar dades geogràfiques de Catalunya.</p>
+	<aside class="presentacio" aria-label="Informació del projecte">
+		<h1>{nomProjecte}</h1>
+		<p>Un visor per a explorar dades geogràfiques de Catalunya.</p>
+		<PanellInformacio />
+	</aside>
 
-  <PanellInformacio></PanellInformacio>
-
-  <Mapa></Mapa>
+	<Mapa></Mapa>
 </main>
 
-
 <style>
-  main {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 24px;
-    font-family: Arial, sans-serif;
-  }
+	:global(body) {
+		margin: 0;
+		background-color: #f1f5ef;
+		color: #24352a;
+		font-family: Arial, sans-serif;
+	}
 
-  h1 {
-    color: #166534;
-  }
+	main {
+		display: grid;
+		grid-template-columns: 220px minmax(0, 1fr);
+		gap: 16px;
+		padding: 12px;
+		align-items: start;
+	}
 
-  p {
-    color: #475569;
-    line-height: 1.6;
-  }
+	.presentacio {
+		min-width: 0;
+		overflow-wrap: anywhere;
+	}
+
+	h1 {
+		margin-top: 0;
+		color: #166534;
+	}
+
+	p {
+		color: #475569;
+		line-height: 1.6;
+	}
+
+	@media (max-width: 1000px) {
+		main {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
 </style>
-
