@@ -24,6 +24,8 @@
 	 *   nom: string,
 	 *   descripcio: string,
 	 *   organisme: string,
+	 *   urlTesselles: string,
+	 *   atribucio: string,
 	 *   urlInformacio: string
 	 * }[]}
 	 */
@@ -34,6 +36,7 @@
 
 	/** @type {MapaMapLibre | undefined} */
 	let mapa;
+	let estilPreparat = false;
 
 	const estilsBase = {
 		gris: 'https://geoserveis.icgc.cat/styles/mapa-base-estandard-gris.json',
@@ -62,23 +65,27 @@
 		}
 
 		baseSeleccionada = base;
-		mapa.setStyle(estilsBase[base]);
+		estilPreparat = false;
+		mapa.setStyle(estilsBase[base], { diff: false });
 	}
 
 	function prepararGeologia() {
-		if (!mapa) {
+		if (!mapa || !estilPreparat) {
+			return;
+		}
+
+		const capaGeologia = catalegCapes.find((capa) => capa.id === 'geologia-general');
+
+		if (!capaGeologia) {
 			return;
 		}
 
 		if (!mapa.getSource('font-geologia')) {
 			mapa.addSource('font-geologia', {
 				type: 'raster',
-				tiles: [
-					'https://geoserveis.icgc.cat/servei/catalunya/mapa-base/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=geologic&STYLES=&FORMAT=image/png&SRS=EPSG:3857&BBOX={bbox-epsg-3857}&WIDTH=256&HEIGHT=256'
-				],
+				tiles: [capaGeologia.urlTesselles],
 				tileSize: 256,
-				attribution:
-					'Catalunya © ICGC (CC BY) · Resta del món © OpenMapTiles © OpenStreetMap contributors'
+				attribution: capaGeologia.atribucio
 			});
 		}
 
@@ -126,6 +133,7 @@
 			}
 
 			catalegCapes = await resposta.json();
+      prepararGeologia();
 		} catch {
 			errorCataleg = 'No s’ha pogut carregar el catàleg de capes.';
 		} finally {
@@ -144,7 +152,10 @@
 			zoom: 7
 		});
 
-		mapa.on('style.load', prepararGeologia);
+		mapa.on('style.load', () => {
+			estilPreparat = true;
+			prepararGeologia();
+		});
 
 		const limits = new LimitsGeografics();
 
@@ -181,6 +192,7 @@
 		observadorMida.observe(contenidorMapa);
 
 		return () => {
+			estilPreparat = false;
 			observadorMida.disconnect();
 			for (const marcador of marcadors) {
 				marcador.remove();
