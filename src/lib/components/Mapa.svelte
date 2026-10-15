@@ -18,6 +18,20 @@
 	let opacitatGeologia = $state(70);
 	let baseSeleccionada = $state('gris');
 
+	/**
+	 * @type {{
+	 *   id: string,
+	 *   nom: string,
+	 *   descripcio: string,
+	 *   organisme: string,
+	 *   urlInformacio: string
+	 * }[]}
+	 */
+	let catalegCapes = $state([]);
+
+	let carregantCataleg = $state(true);
+	let errorCataleg = $state('');
+
 	/** @type {MapaMapLibre | undefined} */
 	let mapa;
 
@@ -100,7 +114,27 @@
 		}
 	}
 
+	async function carregarCataleg() {
+		carregantCataleg = true;
+		errorCataleg = '';
+
+		try {
+			const resposta = await fetch('/api/capes');
+
+			if (!resposta.ok) {
+				throw new Error('No s’ha pogut carregar el catàleg de capes.');
+			}
+
+			catalegCapes = await resposta.json();
+		} catch {
+			errorCataleg = 'No s’ha pogut carregar el catàleg de capes.';
+		} finally {
+			carregantCataleg = false;
+		}
+	}
+
 	onMount(() => {
+		carregarCataleg();
 		establirRutaWorker(rutaWorker);
 
 		mapa = new MapaMapLibre({
@@ -218,6 +252,26 @@
 							canviarOpacitatGeologia(Number(esdeveniment.currentTarget.value))}
 					/>
 				</div>
+
+				<div class="informacio-capes" aria-live="polite">
+					{#if carregantCataleg}
+						<p>Carregant informació de les capes…</p>
+					{:else if errorCataleg}
+						<p>{errorCataleg}</p>
+						<button type="button" onclick={carregarCataleg}> Tornar-ho a provar </button>
+					{:else}
+						{#each catalegCapes as capa (capa.id)}
+							<article>
+								<h3>{capa.nom}</h3>
+								<p>{capa.descripcio}</p>
+								<p>Font: {capa.organisme}</p>
+								<a href={capa.urlInformacio} target="_blank" rel="noopener noreferrer">
+									Informació de la font (pestanya nova)
+								</a>
+							</article>
+						{/each}
+					{/if}
+				</div>
 			</fieldset>
 
 			<fieldset>
@@ -329,5 +383,21 @@
 
 	label + label {
 		margin-top: 12px;
+	}
+
+	.informacio-capes {
+		margin-top: 20px;
+		font-size: 0.85rem;
+		line-height: 1.5;
+		overflow-wrap: anywhere;
+	}
+
+	.informacio-capes h3 {
+		font-size: 0.95rem;
+	}
+
+	.informacio-capes a {
+		color: #166534;
+		text-decoration: underline;
 	}
 </style>
