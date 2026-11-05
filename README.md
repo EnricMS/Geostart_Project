@@ -53,3 +53,18 @@ Aquesta adreça identifica el desplegament compartit. Cal confirmar el domini de
 - [MapLibre GL JS](https://maplibre.org/maplibre-gl-js/docs/): biblioteca cartogràfica amb llicència BSD-3-Clause.
 
 Les atribucions es mantenen visibles al mapa. Les dades i les imatges dels proveïdors conserven les seves condicions d'ús; la llicència de MapLibre no s'estén als mapes ni al codi propi del projecte. Consultar el detall de l'ICGC, OpenStreetMap/OpenMapTiles i els proveïdors d'imatge que corresponguin a cada base i territori.
+
+## Millores adaptades de GeoTrasteja
+
+Les capes superposades comparteixen un model amb identificador, visibilitat, opacitat i valors inicials. Els mapes base continuen sent alternatives independents.
+
+- `MenuCapes.svelte` genera els controls des de les dades i ofereix cerca parcial sense distingir accents ni majúscules.
+- Els controls globals mostren, amaguen o restableixen totes les capes superposades, encara que la cerca n'amagui els controls.
+- Restablir recupera els valors propis de cada capa: inicialment geologia desactivada al 70 % i punts activats al 100 %.
+- `ResumCapes.svelte` calcula amb `$derived` el total activat i el total amb opacitat superior a zero. No confon aquesta selecció amb la càrrega efectiva de dades.
+- L'opacitat també s'aplica als punts. Si s'amaguen o arriben al 0 %, se'n tanquen les finestres.
+- `capes.js` valida la resposta de l'API abans d'acceptar-la: estructura, identificadors únics, metadades, URL HTTPS sense credencials, plantilla WMS compatible i rang d'opacitat. Un array buit és vàlid i es diferencia d'una càrrega pendent o fallida.
+- `mapaCapes.js` sincronitza el model amb les capes reals de MapLibre i els marcadors. En canviar de mapa base es recuperen els valors seleccionats.
+- Els errors d'imatges tenen un reintent independent del catàleg. La petició del catàleg es cancel·la en sortir de la pàgina.
+
+Executar `npm test` per comprovar la validació i la sincronització amb un mapa simulat. Aquestes proves no substitueixen una revisió visual amb els serveis remots reals.
